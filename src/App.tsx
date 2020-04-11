@@ -1,12 +1,7 @@
 import React from 'react';
 import HomePage from './pages/homepage/HomePageComponent';
-import { Switch, Route, Link } from "react-router-dom";
-
-const HatsPage = () => {
-    return <div>
-        <h1>HatsPage</h1>
-    </div>
-}
+import ShopPage from './pages/Shop/ShopComponent';
+import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
 
 
@@ -14,15 +9,25 @@ const HatsPage = () => {
 function App(): JSX.Element {
 
     return (
-        <React.Fragment>
+        <div>
+            <BrowserRouter>
+                <div>
+                    <Link to="/shop">shopPage</Link>
+                </div>
 
-            <Switch>
-                <Route path="/" component={HomePage}></Route>
-                <Route path="/hats" component={HatsPage}></Route>
-                {/* <HomePage /> */}
-            </Switch>
-        </React.Fragment>
-    )
+
+                <Switch>
+                    <Route exact path="/" component={HomePage}></Route>
+                    <Route path="/shop">
+                        <ShopPage />
+                    </Route>
+                    {/* <HomePage /> */}
+                </Switch>
+                {/* <ShopPage /> */}
+            </BrowserRouter>
+
+        </div>
+    );
 }
 
 export default App;

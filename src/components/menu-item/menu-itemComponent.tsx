@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 const MenuItem = (props: any) => {
 
     console.log("withRouter: ", props)
+    console.log("reach to menuitem ")
     const { prop, dirprop } = props;
 
     const { id, title, imageUrl, size } = prop;
