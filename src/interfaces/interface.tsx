@@ -24,3 +24,8 @@ export interface collection {
     items: Array<item>
 }
 
+
+export interface signIn {
+    email: string,
+    password: string
+}
