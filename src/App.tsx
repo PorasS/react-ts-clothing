@@ -3,25 +3,47 @@ import HomePage from './pages/homepage/HomePageComponent';
 import ShopPage from './pages/Shop/ShopComponent';
 import Header from './components/header/headerComponent';
 import SignInAndSignUpPage from './pages/signInAndSignUp/signInAndSignUpComponent';
-import { currentUser } from './interfaces/interface';
-import { auth } from './firebase/firebase.util';
+import { UserData } from './interfaces/interface';
+import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
 
 
 class App extends React.Component {
 
-    state: currentUser = {
+    state: UserData = {
         currentUser: null
     }
 
     unsubscribeFromAuth = null;
 
     componentDidMount() {
-        this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+        this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+
+            if (userAuth) {
+                console.log("1st call: ", userAuth)
+                const userRef = await createUserProfileDocument(userAuth, userAuth.displayName);
+
+                // userRef object is having a method which returns a snapshot
+                // Document snapshot object, we get it from documentReference object
+                // Document snapshot object allows us to check if the document exists, using ,exist property, returns boolean
+                //use can also use a .data() which returns a JSON object of the document
+                userRef.onSnapshot(snapShot => {
+                    // console.log("snapshopApp: ", snapShot.data());
+                    this.setState({
+                        currentUser: {
+                            id: snapShot.id,
+                            ...snapShot.data()
+                        }
+                    });
+                    console.log("cdidMstate: ", this.state)
+                })
+            }
+
             this.setState({
-                currentUser: user
+                currentUser: userAuth
             });
-            console.log("user: ", user);
+
+            // console.log("user: ", user);
         })
     }
 
@@ -32,7 +54,6 @@ class App extends React.Component {
     render() {
         return (
             <div>
-
 
                 <Header currentUser={this.state.currentUser} />
 

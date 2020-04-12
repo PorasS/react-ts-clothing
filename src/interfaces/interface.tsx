@@ -30,6 +30,13 @@ export interface signIn {
     password: string
 }
 
-export interface currentUser {
-    currentUser: string
+export interface UserData {
+    currentUser: {}
+}
+
+export interface SignUpData {
+    displayName: string,
+    email: string,
+    password: string,
+    confirmPassword: string
 }
