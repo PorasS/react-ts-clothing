@@ -3,7 +3,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 const config = {
-    apiKey: "AIzaSyBSV5GNotEMJzqpmWYLie0kJbhBM8wiThk",
+    apiKey: "AIzaSyBSV5GNot",
     authDomain: "react-clothing-db-1601c.firebaseapp.com",
     databaseURL: "https://react-clothing-db-1601c.firebaseio.com",
     projectId: "react-clothing-db-1601c",
