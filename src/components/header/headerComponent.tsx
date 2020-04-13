@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { auth } from '../../firebase/firebase.util'
+import { auth } from '../../firebase/firebase.util';
 import Logo from '../../assets/lion.svg';
 import { connect } from 'react-redux';
 import './headerStyles.scss';
+import CartIcon from '../cartIcon/cartIconComponent';
 // import '../../App.css';
 
 
@@ -32,6 +33,7 @@ class Header extends React.Component<any> {
                                 SIGN IN
                             </Link>
                     }
+                    <CartIcon />
                 </div>
             </div>
         );
