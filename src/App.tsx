@@ -4,7 +4,7 @@ import ShopPage from './pages/Shop/ShopComponent';
 import Header from './components/header/headerComponent';
 import SignInAndSignUpPage from './pages/signInAndSignUp/signInAndSignUpComponent';
 import { auth, createUserProfileDocument } from './firebase/firebase.util';
-import { Switch, Route, Link, BrowserRouter } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/userActions';
 
@@ -36,7 +36,7 @@ class App extends React.Component<any> {
                         ...snapShot.data()
                     });
 
-                    console.log("cdidMstate: ", this.state)
+                    console.log("cdidMstate: ", this.props)
                 })
             }
 
@@ -59,17 +59,23 @@ class App extends React.Component<any> {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/shop" component={ShopPage} />
-                    <Route path="/signin" component={SignInAndSignUpPage} />
+                    <Route path="/signin" render={() => {
+                        return (this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />);
+                    }} />
 
                 </Switch>
-
-
-
             </div >
         );
     };
 }
 
+//we pass a rootReducer to mapStateToProps, which is a object having user, lets destructure
+//the rootreducer object, and pass it to mapStateToProps
+const mapStateToProps = ({ user }) => {
+    return {
+        currentUser: user.currentUser
+    }
+}
 
 // dispatch is used to dispatch the action
 const mapDispatchToProps = (dispatch: any) => {
@@ -81,4 +87,4 @@ const mapDispatchToProps = (dispatch: any) => {
 
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -30,15 +30,10 @@ class Header extends React.Component<any> {
                             :
                             <Link className="option" to='/signin'>
                                 SIGN IN
-                        </Link>
+                            </Link>
                     }
-
-
-
-
                 </div>
             </div>
-
         );
     }
 }
