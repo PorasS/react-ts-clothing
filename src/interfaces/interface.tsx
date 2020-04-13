@@ -40,3 +40,8 @@ export interface SignUpData {
     password: string,
     confirmPassword: string
 }
+
+export interface IAction {
+    type: string,
+    payload: any
+}
