@@ -79,12 +79,9 @@ const mapStateToProps = ({ user }) => {
 
 // dispatch is used to dispatch the action
 const mapDispatchToProps = (dispatch: any) => {
-
     return {
         setCurrentUser: (user: any) => { dispatch(setCurrentUser(user)) }
     }
-
-
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

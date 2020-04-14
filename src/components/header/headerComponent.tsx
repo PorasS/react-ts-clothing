@@ -5,6 +5,7 @@ import Logo from '../../assets/lion.svg';
 import { connect } from 'react-redux';
 import './headerStyles.scss';
 import CartIcon from '../cartIcon/cartIconComponent';
+import CartDropDown from '../cartDropDown/cartDropDownComponent';
 // import '../../App.css';
 
 
@@ -35,17 +36,24 @@ class Header extends React.Component<any> {
                     }
                     <CartIcon />
                 </div>
+                {
+                    this.props.hidden ? null : <CartDropDown />
+                }
             </div>
         );
     }
 }
 
+
+
 // the state which we passed to a mapStateToProps() is actually rootReducer
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: any): any => {
 
     return {
-        currentUser: state.user.currentUser
+        currentUser: state.user.currentUser,
+        hidden: state.cartIcon.hidden
     }
 }
 
+//passing null as default
 export default connect(mapStateToProps)(Header);
