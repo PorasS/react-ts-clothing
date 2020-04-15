@@ -1,23 +1,49 @@
 import React from 'react';
 import './collectionItemStyles.scss';
+import CustomButton from '../customButton/customButtonComponent';
+import { connect } from 'react-redux';
+import { addItem } from '../../redux/cart/cartActions';
 
-const CollectionItem = (props: any) => {
 
-    const { name, imageUrl, price } = props;
-    console.log("collection Items: ", props);
-    return (
-        <div className='collection-item'>
-            <div className='image'
-                style={{
-                    backgroundImage: `url(${imageUrl})`
-                }}
-            />
-            <div className="collection-footer">
-                <span className="name">{name}</span>
-                <span className="price">${price}</span>
-            </div>
-        </div>
-    );
+
+class CollectionItem extends React.Component<any> {
+
+    addCartItem = (): void => {
+        this.props.addItem(this.props.item)
+    }
+    render() {
+        const { name, imageUrl, price } = this.props.item;
+        // console.log("collection Items: ", this.props);
+        const { item, addItem, cartItems } = this.props;
+        // console.log("cartItems: ", this.props.cartItems)
+        return (
+            <div className='collection-item'>
+                <div className='image'
+                    style={{
+                        backgroundImage: `url(${imageUrl})`
+                    }}
+                />
+                <div className="collection-footer">
+                    <span className="name">{name}</span>
+                    <span className="price">${price}</span>
+                </div>
+                <CustomButton type='' value='' onClick={this.addCartItem} isGoogleSignIn='' inverted='true' >ADD TO CART</CustomButton>
+            </div >
+        );
+    }
 }
 
-export default CollectionItem;
+
+const mapDispatchToProps = (dispatch: any) => {
+    return {
+        addItem: (item: any) => { dispatch(addItem(item)) }
+    }
+}
+
+const mapStateToProps = (state: any): any => {
+    return {
+        cartItems: state.cartIcon.cartItems
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CollectionItem);

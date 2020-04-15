@@ -2,7 +2,7 @@ import React from 'react';
 import ShoppingLogo from '../../assets/shopping-bag.svg';
 import './cartIconStyles.scss';
 import { connect } from 'react-redux';
-import toggleCartHidden from '../../redux/cart/cartActions';
+import { toggleCartHidden } from '../../redux/cart/cartActions';
 
 class CartIcon extends React.Component<any> {
 

@@ -10,9 +10,7 @@ const PreviewCollection = (props: any): JSX.Element => {
         <div className="collection-preview" key={id}>
             <h1 className="title">{title}</h1>
             <div className="preview">
-                {items.filter((item: any, index: number) => index < 4).map((item: any) => {
-                    return (<CollectionItem key={item.id} {...item} />);
-                })}
+                {items.filter((item: any, index: number) => index < 4).map((item: any) => <CollectionItem key={item.id} item={item} />)}
             </div>
         </div >
     );

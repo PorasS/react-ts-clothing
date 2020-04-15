@@ -1,7 +1,7 @@
 import { cartActionTypes } from './cartTypes';
 import { IAction } from '../../interfaces/interface';
 
-const toggleCartHidden = (): IAction => {
+export const toggleCartHidden = (): IAction => {
 
     return {
         type: cartActionTypes.TOGGLE_CART_HIDDEN,
@@ -11,4 +11,11 @@ const toggleCartHidden = (): IAction => {
 
 }
 
-export default toggleCartHidden;
+export const addItem = (item: any): IAction => {
+
+    return {
+        type: cartActionTypes.ADD_ITEM,
+        payload: item
+    }
+
+}
