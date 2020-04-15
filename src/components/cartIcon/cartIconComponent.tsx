@@ -3,16 +3,17 @@ import ShoppingLogo from '../../assets/shopping-bag.svg';
 import './cartIconStyles.scss';
 import { connect } from 'react-redux';
 import { toggleCartHidden } from '../../redux/cart/cartActions';
+import { selectCartItemsCount } from '../../redux/cart/cartSelector';
 
 class CartIcon extends React.Component<any> {
 
     render() {
         console.log("cartIcon: ", this.props);
-        const { cartItems } = this.props
+        const { cartItemsCount } = this.props
         return (
             <div className='cart-icon' onClick={this.props.toggleCartHidden}>
                 <ShoppingLogo className='shopping-icon' />
-                <span className='item-count'> {cartItems.length} </span>
+                <span className='item-count'> {cartItemsCount} </span>
             </div>
         );
     }
@@ -27,7 +28,8 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: any) => {
     return {
-        cartItems: state.cartIcon.cartItems
+        cartItemsCount: selectCartItemsCount(state)
+
     }
 }
 

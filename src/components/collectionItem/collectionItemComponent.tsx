@@ -3,6 +3,7 @@ import './collectionItemStyles.scss';
 import CustomButton from '../customButton/customButtonComponent';
 import { connect } from 'react-redux';
 import { addItem } from '../../redux/cart/cartActions';
+import { selectCartItems } from '../../redux/cart/cartSelector';
 
 
 
@@ -42,7 +43,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: any): any => {
     return {
-        cartItems: state.cartIcon.cartItems
+        cartItems: selectCartItems(state)
     }
 }
 

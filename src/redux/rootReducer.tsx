@@ -8,6 +8,6 @@ import cartReducer from './cart/cartReducer';
 export default combineReducers(
     {
         user: userReducer,
-        cartIcon: cartReducer,
+        cart: cartReducer,
     }
 );

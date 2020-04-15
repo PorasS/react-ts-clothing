@@ -51,7 +51,7 @@ const mapStateToProps = (state: any): any => {
 
     return {
         currentUser: state.user.currentUser,
-        hidden: state.cartIcon.hidden
+        hidden: state.cart.hidden
     }
 }
 
