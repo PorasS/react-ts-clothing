@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import './headerStyles.scss';
 import CartIcon from '../cartIcon/cartIconComponent';
 import CartDropDown from '../cartDropDown/cartDropDownComponent';
+import { selectCurrentUser } from '../../redux/user/userSelector';
+import { selectCartHidden } from '../../redux/cart/cartSelector';
+
 // import '../../App.css';
 
 
@@ -50,8 +53,8 @@ class Header extends React.Component<any> {
 const mapStateToProps = (state: any): any => {
 
     return {
-        currentUser: state.user.currentUser,
-        hidden: state.cart.hidden
+        currentUser: selectCurrentUser(state),
+        hidden: selectCartHidden(state)
     }
 }
 

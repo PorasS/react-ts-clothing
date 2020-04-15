@@ -11,7 +11,6 @@ class CartItem extends React.Component<any> {
                 <img src={imageUrl} alt='item'></img>
                 <div className='item-details'>
                     <span className='name'>{name}</span>
-                    {/* <span className='price'>${price}</span> */}
                     <span>{quantity} * ${price}</span>
                 </div>
             </div>

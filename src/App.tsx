@@ -1,12 +1,16 @@
 import React from 'react';
 import HomePage from './pages/homepage/HomePageComponent';
 import ShopPage from './pages/Shop/ShopComponent';
+import CheckOutPage from './pages/checkout/checkOutComponent';
 import Header from './components/header/headerComponent';
 import SignInAndSignUpPage from './pages/signInAndSignUp/signInAndSignUpComponent';
+
 import { auth, createUserProfileDocument } from './firebase/firebase.util';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/userActions';
+import { selectCurrentUser } from './redux/user/userSelector';
+
 
 
 class App extends React.Component<any> {
@@ -59,9 +63,10 @@ class App extends React.Component<any> {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/shop" component={ShopPage} />
-                    <Route path="/signin" render={() => {
+                    <Route exact path="/signin" render={() => {
                         return (this.props.currentUser ? <Redirect to="/" /> : <SignInAndSignUpPage />);
                     }} />
+                    <Route path="/checkout" component={CheckOutPage} />
 
                 </Switch>
             </div >
@@ -71,9 +76,9 @@ class App extends React.Component<any> {
 
 //we pass a rootReducer to mapStateToProps, which is a object having user, lets destructure
 //the rootreducer object, and pass it to mapStateToProps
-const mapStateToProps = ({ user }) => {
+const mapStateToProps = (state: any) => {
     return {
-        currentUser: user.currentUser
+        currentUser: selectCurrentUser(state)
     }
 }
 
