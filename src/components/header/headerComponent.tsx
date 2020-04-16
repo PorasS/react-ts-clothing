@@ -53,7 +53,8 @@ class Header extends React.Component<any> {
 const mapStateToProps = (state: any): any => {
 
     return {
-        currentUser: selectCurrentUser(state),
+        // currentUser: selectCurrentUser(state),
+        currentUser: state.user.currentUser,
         hidden: selectCartHidden(state)
     }
 }

@@ -1,7 +1,7 @@
 import { IAction } from '../../interfaces/interface';
 import { cartActionTypes } from './cartTypes';
 
-import { addItemToCart } from './cartUtil';
+import { addItemToCart, removeCartItem } from './cartUtil';
 import { addItem } from './cartActions';
 
 const INITIAL_STATE: any = {
@@ -22,6 +22,17 @@ const cartReducer = (state = INITIAL_STATE, action: IAction) => {
                 ...state,
                 cartItems: addItemToCart(state.cartItems, action.payload)
                 // cartItems: [...state.cartItems, action.payload]
+            }
+        case cartActionTypes.REMOVE_ITEM:
+            return {
+                ...state,
+                // cartItems: removeCartItem(state.cartItems, action.payload)
+                cartItems: state.cartItems.filter((cartItem: any) => cartItem.id != action.payload.id)
+            }
+        case cartActionTypes.REDUCE_QUANTITY:
+            return {
+                ...state,
+                cartItems: removeCartItem(state.cartItems, action.payload)
             }
         default:
             return state;

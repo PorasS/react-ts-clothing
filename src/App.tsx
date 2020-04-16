@@ -78,7 +78,8 @@ class App extends React.Component<any> {
 //the rootreducer object, and pass it to mapStateToProps
 const mapStateToProps = (state: any) => {
     return {
-        currentUser: selectCurrentUser(state)
+        // currentUser: selectCurrentUser(state)
+        currentUser: state.user.currentUser
     }
 }
 

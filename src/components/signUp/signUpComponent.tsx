@@ -90,7 +90,7 @@ class SignUp extends React.Component {
                         label='Confirm Password'
                     />
                     {/* children, type, value, onClick, isGoogleSignIn  */}
-                    <CustomButtom type='submit' value='' onClick={() => { }} isGoogleSignIn='false'>Sign Up</CustomButtom>
+                    <CustomButtom type='submit' value='' onClick={() => { }} isGoogleSignIn='false' inverted=''>Sign Up</CustomButtom>
                 </form>
             </div >
         );
