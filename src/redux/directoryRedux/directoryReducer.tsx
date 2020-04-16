@@ -1,4 +1,4 @@
-import { directoryState } from '../../components/directory/directoryState';
+import { directoryState } from './directoryState';
 import { dir, IAction } from '../../interfaces/interface';
 
 
