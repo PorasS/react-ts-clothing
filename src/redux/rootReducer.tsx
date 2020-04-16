@@ -1,13 +1,25 @@
 import { combineReducers } from 'redux';
 
+import { persistReducer } from 'redux-persist';
+
+import storage from 'redux-persist/lib/storage';
+
 import userReducer from './user/userReducer';
 import cartReducer from './cart/cartReducer';
 
+//here whitlist takes a array of reducer, which we want to persist, user is already persisted by firebase,
+//therefore, we are only passing the cart which is cartReducer.
+const persistconfig = {
+    key: 'root',
+    storage,
+    whitelist: ['cart']
+}
 
-
-export default combineReducers(
+const rootReducer = combineReducers(
     {
         user: userReducer,
         cart: cartReducer,
     }
 );
+
+export default persistReducer(persistconfig, rootReducer);
