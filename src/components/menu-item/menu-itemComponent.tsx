@@ -7,7 +7,7 @@ const MenuItem = (props: any) => {
 
     console.log("withRouter: ", props)
     console.log("reach to menuitem ")
-    const { prop, dirprop } = props;
+    const { prop } = props;
 
     const { id, title, imageUrl, size } = prop;
 

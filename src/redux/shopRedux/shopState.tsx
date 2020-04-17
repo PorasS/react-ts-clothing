@@ -1,8 +1,8 @@
 import { collection } from '../../interfaces/interface';
 
 
-const shopstate: Array<collection> = [
-    {
+const shopstate: any = {
+    hats: {
         id: 1,
         title: 'Hats',
         routeName: 'hats',
@@ -63,7 +63,7 @@ const shopstate: Array<collection> = [
             }
         ]
     },
-    {
+    sneakers: {
         id: 2,
         title: 'Sneakers',
         routeName: 'sneakers',
@@ -118,7 +118,7 @@ const shopstate: Array<collection> = [
             }
         ]
     },
-    {
+    jackets: {
         id: 3,
         title: 'Jackets',
         routeName: 'jackets',
@@ -155,7 +155,7 @@ const shopstate: Array<collection> = [
             }
         ]
     },
-    {
+    womens: {
         id: 4,
         title: 'Womens',
         routeName: 'womens',
@@ -204,7 +204,7 @@ const shopstate: Array<collection> = [
             }
         ]
     },
-    {
+    mens: {
         id: 5,
         title: 'Mens',
         routeName: 'mens',
@@ -247,6 +247,7 @@ const shopstate: Array<collection> = [
             }
         ]
     }
-];
+}
+
 
 export default shopstate;

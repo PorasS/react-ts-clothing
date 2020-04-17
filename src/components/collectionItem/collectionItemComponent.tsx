@@ -14,9 +14,7 @@ class CollectionItem extends React.Component<any> {
     }
     render() {
         const { name, imageUrl, price } = this.props.item;
-        // console.log("collection Items: ", this.props);
-        const { item, addItem, cartItems } = this.props;
-        // console.log("cartItems: ", this.props.cartItems)
+        console.log("collection Items: ", this.props);
         return (
             <div className='collection-item'>
                 <div className='image'
