@@ -4,6 +4,7 @@ import './checkoutStyles.scss';
 import CheckOutItem from '../../components/checkoutItem/checkoutItemComponent';
 
 import { selectCartItems, selectCartTotal } from '../../redux/cart/cartSelector';
+import StripeCheckoutButton from '../../components/stripe-button/stripeButtonComponent';
 
 
 class CheckOutPage extends React.Component<any>{
@@ -36,6 +37,7 @@ class CheckOutPage extends React.Component<any>{
                 <div className="total">
                     <span>Total: ${totalCost}</span>
                 </div>
+                <StripeCheckoutButton price={totalCost} />
             </div>
         );
     }

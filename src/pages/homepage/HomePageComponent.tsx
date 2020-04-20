@@ -1,15 +1,15 @@
 import React from 'react';
 import '../../HomePageStyles.scss';
+import { HomePageContainer } from './homepageStyles';
 import Directory from '../../components/directory/directoryComponents';
 
 
 const HomePage = () => {
     // console.log("props in HomePage", props)
     return (
-        <div className="homepage">
+        <HomePageContainer>
             <Directory />
-        </div>
-
+        </HomePageContainer>
     );
 }
 

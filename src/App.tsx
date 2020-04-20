@@ -5,11 +5,11 @@ import CheckOutPage from './pages/checkout/checkOutComponent';
 import Header from './components/header/headerComponent';
 import SignInAndSignUpPage from './pages/signInAndSignUp/signInAndSignUpComponent';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.util';
+import { auth, createUserProfileDocument, addCollectionsAndDocuments } from './firebase/firebase.util';
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user/userActions';
-import { selectCurrentUser } from './redux/user/userSelector';
+import { selectCollectionForPreview } from './redux/shopRedux/shopDataSelector';
 
 
 
@@ -23,6 +23,7 @@ class App extends React.Component<any> {
 
     componentDidMount() {
         console.log("connect: ", this.props)
+
         this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
 
             if (userAuth) {
@@ -33,6 +34,7 @@ class App extends React.Component<any> {
                 // Document snapshot object, we get it from documentReference object
                 // Document snapshot object allows us to check if the document exists, using ,exist property, returns boolean
                 //use can also use a .data() which returns a JSON object of the document
+                //onSnapshot() methods gets called everytime, snapshot object gets updated.
                 userRef.onSnapshot(snapShot => {
                     // console.log("snapshopApp: ", snapShot.data());
                     this.props.setCurrentUser({
@@ -47,7 +49,12 @@ class App extends React.Component<any> {
             this.props.setCurrentUser(userAuth);
 
             // console.log("user: ", user);
+            // console.log("App props: ", this.props);
+            // addCollectionsAndDocuments("collections", this.props.collectionsArray.map(({ title, items }) => ({ title, items })));
+
         })
+
+
     }
 
     componentWillUnmount() {
@@ -79,7 +86,8 @@ class App extends React.Component<any> {
 const mapStateToProps = (state: any) => {
     return {
         // currentUser: selectCurrentUser(state)
-        currentUser: state.user.currentUser
+        currentUser: state.user.currentUser,
+        // collectionsArray: selectCollectionForPreview(state)
     }
 }
 
@@ -87,6 +95,7 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
     return {
         setCurrentUser: (user: any) => { dispatch(setCurrentUser(user)) }
+
     }
 }
 

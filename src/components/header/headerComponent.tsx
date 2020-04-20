@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom';
 import { auth } from '../../firebase/firebase.util';
 import Logo from '../../assets/lion.svg';
 import { connect } from 'react-redux';
-import './headerStyles.scss';
 import CartIcon from '../cartIcon/cartIconComponent';
 import CartDropDown from '../cartDropDown/cartDropDownComponent';
-import { selectCurrentUser } from '../../redux/user/userSelector';
 import { selectCartHidden } from '../../redux/cart/cartSelector';
+
+import {
+    HeaderComponent,
+    LogoContainer,
+    OptionsContainer,
+    OptionLink,
+    OptionDiv
+} from './headerStyles';
 
 // import '../../App.css';
 
@@ -18,31 +24,31 @@ class Header extends React.Component<any> {
 
         console.log("header: ", this.props)
         return (
-            <div className='header'>
-                <Link className='logo-container' to="/">
+            <HeaderComponent>
+                <LogoContainer to='/'>
                     <Logo className='logo' />
-                </Link>
-                <div className='options'>
-                    <Link className="option" to='/shop'>
+                </LogoContainer>
+                <OptionsContainer>
+                    <OptionLink to='/shop'>
                         SHOP
-                </Link>
-                    <Link className="option" to='/contact'>
+                    </OptionLink>
+                    <OptionLink to='/contact'>
                         CONTACT
-                </Link>
+                    </OptionLink>
                     {
                         this.props.currentUser ?
-                            <div className="option" onClick={() => auth.signOut()}>SIGN OUT</div>
+                            <OptionDiv onClick={() => auth.signOut()}>SIGN OUT</OptionDiv>
                             :
-                            <Link className="option" to='/signin'>
+                            <OptionLink to='/signin'>
                                 SIGN IN
-                            </Link>
+                            </OptionLink>
                     }
                     <CartIcon />
-                </div>
+                </OptionsContainer>
                 {
                     this.props.hidden ? null : <CartDropDown />
                 }
-            </div>
+            </HeaderComponent>
         );
     }
 }
