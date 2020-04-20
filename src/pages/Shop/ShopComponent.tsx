@@ -6,6 +6,7 @@ import { updateCollections } from '../../redux/shopRedux/shopDataActions';
 import { firestore, convertcollectionsSnapshotToMap } from '../../firebase/firebase.util';
 import CollectionPage from '../collection/collectionComponent';
 import withSpinner from '../../components/withSpinner/withSpinnerComponent';
+import axios from 'axios';
 
 class ShopPage extends React.Component<any> {
 
@@ -19,13 +20,17 @@ class ShopPage extends React.Component<any> {
         const collectionRef = firestore.collection("collections");
         // console.log("collectionRef shop: ", await collectionRef.doc("7csmdt92jEI0U7CeVQ4v").get());
         // whenever the collectionRef gets update, this onSnapshot() returns the updated version data.
-        this.unSubscribeFromSnapshot = collectionRef.onSnapshot(async (snapshot: any) => {
+        // const collection = await axios.get("http://localhost:8080/firestore/getcollection");
+        // console.log("collection from service: ", collection);
+        collectionRef.get().then((snapshot: any) => {
             const collectionsMap = convertcollectionsSnapshotToMap(snapshot);
             console.log("collectionsMap: ", collectionsMap);
             this.props.shopData(collectionsMap);
             this.setState({ loading: false });
-        }
-        );
+        });
+        // const collectionsMap = convertcollectionsSnapshotToMap(collection);
+        // this.props.shopData(collectionsMap);
+        // this.setState({ loading: false });
     }
 
 
